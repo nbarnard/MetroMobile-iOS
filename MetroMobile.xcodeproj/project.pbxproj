@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1150B98018A01C1F00C2B7FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1150B97F18A01C1F00C2B7FA /* Foundation.framework */; };
+		1150B98218A01C1F00C2B7FA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1150B98118A01C1F00C2B7FA /* CoreGraphics.framework */; };
+		1150B98418A01C1F00C2B7FA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1150B98318A01C1F00C2B7FA /* UIKit.framework */; };
+		1150B98A18A01C1F00C2B7FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1150B98818A01C1F00C2B7FA /* InfoPlist.strings */; };
+		1150B98C18A01C1F00C2B7FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1150B98B18A01C1F00C2B7FA /* main.m */; };
+		1150B99018A01C1F00C2B7FA /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1150B98F18A01C1F00C2B7FA /* MMAppDelegate.m */; };
+		1150B99218A01C1F00C2B7FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1150B99118A01C1F00C2B7FA /* Images.xcassets */; };
+		1150B99918A01C2000C2B7FA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1150B99818A01C2000C2B7FA /* XCTest.framework */; };
+		1150B99A18A01C2000C2B7FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1150B97F18A01C1F00C2B7FA /* Foundation.framework */; };
+		1150B99B18A01C2000C2B7FA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1150B98318A01C1F00C2B7FA /* UIKit.framework */; };
+		1150B9A318A01C2000C2B7FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1150B9A118A01C2000C2B7FA /* InfoPlist.strings */; };
+		1150B9A518A01C2000C2B7FA /* MetroMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1150B9A418A01C2000C2B7FA /* MetroMobileTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1150B99C18A01C2000C2B7FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1150B97418A01C1F00C2B7FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1150B97B18A01C1F00C2B7FA;
+			remoteInfo = MetroMobile;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1150B97C18A01C1F00C2B7FA /* MetroMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetroMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1150B97F18A01C1F00C2B7FA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1150B98118A01C1F00C2B7FA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1150B98318A01C1F00C2B7FA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1150B98718A01C1F00C2B7FA /* MetroMobile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetroMobile-Info.plist"; sourceTree = "<group>"; };
+		1150B98918A01C1F00C2B7FA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1150B98B18A01C1F00C2B7FA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1150B98D18A01C1F00C2B7FA /* MetroMobile-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MetroMobile-Prefix.pch"; sourceTree = "<group>"; };
+		1150B98E18A01C1F00C2B7FA /* MMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
+		1150B98F18A01C1F00C2B7FA /* MMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
+		1150B99118A01C1F00C2B7FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1150B99718A01C2000C2B7FA /* MetroMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetroMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1150B99818A01C2000C2B7FA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1150B9A018A01C2000C2B7FA /* MetroMobileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetroMobileTests-Info.plist"; sourceTree = "<group>"; };
+		1150B9A218A01C2000C2B7FA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1150B9A418A01C2000C2B7FA /* MetroMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetroMobileTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1150B97918A01C1F00C2B7FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1150B98218A01C1F00C2B7FA /* CoreGraphics.framework in Frameworks */,
+				1150B98418A01C1F00C2B7FA /* UIKit.framework in Frameworks */,
+				1150B98018A01C1F00C2B7FA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1150B99418A01C2000C2B7FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1150B99918A01C2000C2B7FA /* XCTest.framework in Frameworks */,
+				1150B99B18A01C2000C2B7FA /* UIKit.framework in Frameworks */,
+				1150B99A18A01C2000C2B7FA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1150B97318A01C1F00C2B7FA = {
+			isa = PBXGroup;
+			children = (
+				1150B98518A01C1F00C2B7FA /* MetroMobile */,
+				1150B99E18A01C2000C2B7FA /* MetroMobileTests */,
+				1150B97E18A01C1F00C2B7FA /* Frameworks */,
+				1150B97D18A01C1F00C2B7FA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1150B97D18A01C1F00C2B7FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1150B97C18A01C1F00C2B7FA /* MetroMobile.app */,
+				1150B99718A01C2000C2B7FA /* MetroMobileTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1150B97E18A01C1F00C2B7FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1150B97F18A01C1F00C2B7FA /* Foundation.framework */,
+				1150B98118A01C1F00C2B7FA /* CoreGraphics.framework */,
+				1150B98318A01C1F00C2B7FA /* UIKit.framework */,
+				1150B99818A01C2000C2B7FA /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1150B98518A01C1F00C2B7FA /* MetroMobile */ = {
+			isa = PBXGroup;
+			children = (
+				1150B98E18A01C1F00C2B7FA /* MMAppDelegate.h */,
+				1150B98F18A01C1F00C2B7FA /* MMAppDelegate.m */,
+				1150B99118A01C1F00C2B7FA /* Images.xcassets */,
+				1150B98618A01C1F00C2B7FA /* Supporting Files */,
+			);
+			path = MetroMobile;
+			sourceTree = "<group>";
+		};
+		1150B98618A01C1F00C2B7FA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1150B98718A01C1F00C2B7FA /* MetroMobile-Info.plist */,
+				1150B98818A01C1F00C2B7FA /* InfoPlist.strings */,
+				1150B98B18A01C1F00C2B7FA /* main.m */,
+				1150B98D18A01C1F00C2B7FA /* MetroMobile-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1150B99E18A01C2000C2B7FA /* MetroMobileTests */ = {
+			isa = PBXGroup;
+			children = (
+				1150B9A418A01C2000C2B7FA /* MetroMobileTests.m */,
+				1150B99F18A01C2000C2B7FA /* Supporting Files */,
+			);
+			path = MetroMobileTests;
+			sourceTree = "<group>";
+		};
+		1150B99F18A01C2000C2B7FA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1150B9A018A01C2000C2B7FA /* MetroMobileTests-Info.plist */,
+				1150B9A118A01C2000C2B7FA /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1150B97B18A01C1F00C2B7FA /* MetroMobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1150B9A818A01C2000C2B7FA /* Build configuration list for PBXNativeTarget "MetroMobile" */;
+			buildPhases = (
+				1150B97818A01C1F00C2B7FA /* Sources */,
+				1150B97918A01C1F00C2B7FA /* Frameworks */,
+				1150B97A18A01C1F00C2B7FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MetroMobile;
+			productName = MetroMobile;
+			productReference = 1150B97C18A01C1F00C2B7FA /* MetroMobile.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1150B99618A01C2000C2B7FA /* MetroMobileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1150B9AB18A01C2000C2B7FA /* Build configuration list for PBXNativeTarget "MetroMobileTests" */;
+			buildPhases = (
+				1150B99318A01C2000C2B7FA /* Sources */,
+				1150B99418A01C2000C2B7FA /* Frameworks */,
+				1150B99518A01C2000C2B7FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1150B99D18A01C2000C2B7FA /* PBXTargetDependency */,
+			);
+			name = MetroMobileTests;
+			productName = MetroMobileTests;
+			productReference = 1150B99718A01C2000C2B7FA /* MetroMobileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1150B97418A01C1F00C2B7FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MM;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "NMFF Development";
+				TargetAttributes = {
+					1150B99618A01C2000C2B7FA = {
+						TestTargetID = 1150B97B18A01C1F00C2B7FA;
+					};
+				};
+			};
+			buildConfigurationList = 1150B97718A01C1F00C2B7FA /* Build configuration list for PBXProject "MetroMobile" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1150B97318A01C1F00C2B7FA;
+			productRefGroup = 1150B97D18A01C1F00C2B7FA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1150B97B18A01C1F00C2B7FA /* MetroMobile */,
+				1150B99618A01C2000C2B7FA /* MetroMobileTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1150B97A18A01C1F00C2B7FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1150B98A18A01C1F00C2B7FA /* InfoPlist.strings in Resources */,
+				1150B99218A01C1F00C2B7FA /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1150B99518A01C2000C2B7FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1150B9A318A01C2000C2B7FA /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1150B97818A01C1F00C2B7FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1150B99018A01C1F00C2B7FA /* MMAppDelegate.m in Sources */,
+				1150B98C18A01C1F00C2B7FA /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1150B99318A01C2000C2B7FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1150B9A518A01C2000C2B7FA /* MetroMobileTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1150B99D18A01C2000C2B7FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1150B97B18A01C1F00C2B7FA /* MetroMobile */;
+			targetProxy = 1150B99C18A01C2000C2B7FA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1150B98818A01C1F00C2B7FA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1150B98918A01C1F00C2B7FA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1150B9A118A01C2000C2B7FA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1150B9A218A01C2000C2B7FA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1150B9A618A01C2000C2B7FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1150B9A718A01C2000C2B7FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1150B9A918A01C2000C2B7FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MetroMobile/MetroMobile-Prefix.pch";
+				INFOPLIST_FILE = "MetroMobile/MetroMobile-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1150B9AA18A01C2000C2B7FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MetroMobile/MetroMobile-Prefix.pch";
+				INFOPLIST_FILE = "MetroMobile/MetroMobile-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		1150B9AC18A01C2000C2B7FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MetroMobile.app/MetroMobile";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MetroMobile/MetroMobile-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MetroMobileTests/MetroMobileTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		1150B9AD18A01C2000C2B7FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MetroMobile.app/MetroMobile";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MetroMobile/MetroMobile-Prefix.pch";
+				INFOPLIST_FILE = "MetroMobileTests/MetroMobileTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1150B97718A01C1F00C2B7FA /* Build configuration list for PBXProject "MetroMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1150B9A618A01C2000C2B7FA /* Debug */,
+				1150B9A718A01C2000C2B7FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1150B9A818A01C2000C2B7FA /* Build configuration list for PBXNativeTarget "MetroMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1150B9A918A01C2000C2B7FA /* Debug */,
+				1150B9AA18A01C2000C2B7FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1150B9AB18A01C2000C2B7FA /* Build configuration list for PBXNativeTarget "MetroMobileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1150B9AC18A01C2000C2B7FA /* Debug */,
+				1150B9AD18A01C2000C2B7FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1150B97418A01C1F00C2B7FA /* Project object */;
+}
