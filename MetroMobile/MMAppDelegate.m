@@ -7,13 +7,26 @@
 //
 
 #import "MMAppDelegate.h"
+#import "MMDataController.h"
+#import "MMTransitSystem.h"
 
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+
+    [MMDataController shared]; // init the controller so we start some lazy loading of stuff.
+
+    
+//
+//    for (MMAgency *agency in allAgencies) {
+//        NSLog(@"%@", agency.agencyId);
+//        NSLog(@"%@", agency.name);
+//        NSLog(@"%@", agency.disclaimer);
+//    }
+
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

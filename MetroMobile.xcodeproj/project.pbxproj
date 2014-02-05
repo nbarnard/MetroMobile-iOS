@@ -19,6 +19,10 @@
 		1150B99B18A01C2000C2B7FA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1150B98318A01C1F00C2B7FA /* UIKit.framework */; };
 		1150B9A318A01C2000C2B7FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1150B9A118A01C2000C2B7FA /* InfoPlist.strings */; };
 		1150B9A518A01C2000C2B7FA /* MetroMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1150B9A418A01C2000C2B7FA /* MetroMobileTests.m */; };
+		1150B9B018A01E2A00C2B7FA /* MMTransitSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1150B9AF18A01E2A00C2B7FA /* MMTransitSystem.m */; };
+		1150B9B518A0234100C2B7FA /* MMDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1150B9B418A0234100C2B7FA /* MMDataController.m */; };
+		1150B9B818A0250B00C2B7FA /* MMNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1150B9B718A0250B00C2B7FA /* MMNetworkController.m */; };
+		1150B9BA18A1929100C2B7FA /* SupportedTransitSystems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1150B9B918A1929100C2B7FA /* SupportedTransitSystems.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,13 @@
 		1150B9A018A01C2000C2B7FA /* MetroMobileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetroMobileTests-Info.plist"; sourceTree = "<group>"; };
 		1150B9A218A01C2000C2B7FA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1150B9A418A01C2000C2B7FA /* MetroMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetroMobileTests.m; sourceTree = "<group>"; };
+		1150B9AE18A01E2A00C2B7FA /* MMTransitSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTransitSystem.h; sourceTree = "<group>"; };
+		1150B9AF18A01E2A00C2B7FA /* MMTransitSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTransitSystem.m; sourceTree = "<group>"; };
+		1150B9B318A0234100C2B7FA /* MMDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDataController.h; sourceTree = "<group>"; };
+		1150B9B418A0234100C2B7FA /* MMDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDataController.m; sourceTree = "<group>"; };
+		1150B9B618A0250B00C2B7FA /* MMNetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMNetworkController.h; sourceTree = "<group>"; };
+		1150B9B718A0250B00C2B7FA /* MMNetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMNetworkController.m; sourceTree = "<group>"; };
+		1150B9B918A1929100C2B7FA /* SupportedTransitSystems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SupportedTransitSystems.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +120,10 @@
 			children = (
 				1150B98E18A01C1F00C2B7FA /* MMAppDelegate.h */,
 				1150B98F18A01C1F00C2B7FA /* MMAppDelegate.m */,
+				1150B9B618A0250B00C2B7FA /* MMNetworkController.h */,
+				1150B9B718A0250B00C2B7FA /* MMNetworkController.m */,
+				1150B9B218A0231000C2B7FA /* Model Controller */,
+				1150B9B118A022DC00C2B7FA /* Model */,
 				1150B99118A01C1F00C2B7FA /* Images.xcassets */,
 				1150B98618A01C1F00C2B7FA /* Supporting Files */,
 			);
@@ -119,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				1150B98718A01C1F00C2B7FA /* MetroMobile-Info.plist */,
+				1150B9B918A1929100C2B7FA /* SupportedTransitSystems.plist */,
 				1150B98818A01C1F00C2B7FA /* InfoPlist.strings */,
 				1150B98B18A01C1F00C2B7FA /* main.m */,
 				1150B98D18A01C1F00C2B7FA /* MetroMobile-Prefix.pch */,
@@ -142,6 +158,24 @@
 				1150B9A118A01C2000C2B7FA /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1150B9B118A022DC00C2B7FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1150B9AE18A01E2A00C2B7FA /* MMTransitSystem.h */,
+				1150B9AF18A01E2A00C2B7FA /* MMTransitSystem.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1150B9B218A0231000C2B7FA /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1150B9B318A0234100C2B7FA /* MMDataController.h */,
+				1150B9B418A0234100C2B7FA /* MMDataController.m */,
+			);
+			name = "Model Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1150B9BA18A1929100C2B7FA /* SupportedTransitSystems.plist in Resources */,
 				1150B98A18A01C1F00C2B7FA /* InfoPlist.strings in Resources */,
 				1150B99218A01C1F00C2B7FA /* Images.xcassets in Resources */,
 			);
@@ -241,6 +276,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1150B99018A01C1F00C2B7FA /* MMAppDelegate.m in Sources */,
+				1150B9B818A0250B00C2B7FA /* MMNetworkController.m in Sources */,
+				1150B9B518A0234100C2B7FA /* MMDataController.m in Sources */,
+				1150B9B018A01E2A00C2B7FA /* MMTransitSystem.m in Sources */,
 				1150B98C18A01C1F00C2B7FA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +480,7 @@
 				1150B9AA18A01C2000C2B7FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1150B9AB18A01C2000C2B7FA /* Build configuration list for PBXNativeTarget "MetroMobileTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +489,7 @@
 				1150B9AD18A01C2000C2B7FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
