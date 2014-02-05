@@ -8,22 +8,72 @@
 
 #import "MMTransitSystem.h"
 
+@interface MMTransitSystem ()
+
+@property (nonatomic, strong) NSDictionary *supportedSystem;
+
+@end
+
 @implementation MMTransitSystem
 
--(MMTransitSystem *)initWithName: (NSString *) name andNameSource: (NSString *) nameSource andTZSource: (NSString *) timeZoneSource andBoundBoxSource: (NSString *) boundBoxSource andRealTimeSource: (NSString *) realTimeSource andStopsSource: (NSString *) stopsSource andRoutePolygonSource: (NSString *) routePolygonSource andSourceIDs: (NSArray *) sourceIDs; {
+
+- (MMTransitSystem *) initWithSupportedSystemDictionary:(NSDictionary *)supportedSystem {
     self = [super init];
 
     if (self != nil) {
-        _name = name;
-        _nameSource = nameSource;
-        _timeZoneSource = timeZoneSource;
-        _boundBoxSource = boundBoxSource;
-        _realTimeSource = realTimeSource;
-        _stopsSource = stopsSource;
-        _routePolygonSource = routePolygonSource;
-        _sourceIDs = sourceIDs;
+        _supportedSystem = supportedSystem;
     }
+
     return self;
+}
+
+-(NSArray *)getSourceForType: (sourceType) sourceType {
+// If the supported system has no more than three entries, there are no optional source overrides, so return the default.
+    if ([_supportedSystem count] <= 3) {
+        return [_supportedSystem objectForKey:@"defaultSource"];
+    }
+
+    NSString *sourceKey = [NSString new];
+
+    switch (sourceType) {
+        case defaultSource:
+            sourceKey = @"defaultSource";
+            break;
+        case nameSource:
+            sourceKey = @"nameSource";
+            break;
+        case boundBoxSource:
+            sourceKey = @"boundBoxSource";
+            break;
+        case realTimeSource:
+            sourceKey = @"realTimeSource";
+            break;
+        case stopsSource:
+            sourceKey = @"stopsSource";
+            break;
+        case routePolygonSource: 
+            sourceKey = @"routePolygonSource";
+            break;
+        case timeZoneSource: 
+            sourceKey = @"timeZoneSource";
+            break;
+        case scheduleSource: 
+            sourceKey = @"scheduleSource";
+            break;
+        default:
+            sourceKey = @"defaultSource";
+            break;
+    }
+
+    NSArray *requestedResult = [_supportedSystem objectForKey:sourceKey];
+
+    if (requestedResult == nil) {
+        requestedResult = [_supportedSystem objectForKey:@"defaultSource"];
+    }
+
+
+    return requestedResult;
+
 }
 
 @end

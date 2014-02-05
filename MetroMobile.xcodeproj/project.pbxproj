@@ -23,6 +23,7 @@
 		1150B9B518A0234100C2B7FA /* MMDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1150B9B418A0234100C2B7FA /* MMDataController.m */; };
 		1150B9B818A0250B00C2B7FA /* MMNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1150B9B718A0250B00C2B7FA /* MMNetworkController.m */; };
 		1150B9BA18A1929100C2B7FA /* SupportedTransitSystems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1150B9B918A1929100C2B7FA /* SupportedTransitSystems.plist */; };
+		11ACC7AA18A2E7F1003FD01B /* APISpecification.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11ACC7A918A2E7F1003FD01B /* APISpecification.plist */; };
 		4C9F1127B7494776B7E13C68 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF51F9B8F2F45EAB2B1EF72 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		1150B9B618A0250B00C2B7FA /* MMNetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMNetworkController.h; sourceTree = "<group>"; };
 		1150B9B718A0250B00C2B7FA /* MMNetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMNetworkController.m; sourceTree = "<group>"; };
 		1150B9B918A1929100C2B7FA /* SupportedTransitSystems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SupportedTransitSystems.plist; sourceTree = "<group>"; };
+		11ACC7A918A2E7F1003FD01B /* APISpecification.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = APISpecification.plist; path = ../APISpecification.plist; sourceTree = "<group>"; };
 		11DB82A118A21A0E000D1C56 /* OneBusAwayKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneBusAwayKey.h; sourceTree = "<group>"; };
 		11DB82A218A22500000D1C56 /* defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
 		5BF51F9B8F2F45EAB2B1EF72 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				1150B98718A01C1F00C2B7FA /* MetroMobile-Info.plist */,
+				11ACC7A918A2E7F1003FD01B /* APISpecification.plist */,
 				1150B9B918A1929100C2B7FA /* SupportedTransitSystems.plist */,
 				1150B98818A01C1F00C2B7FA /* InfoPlist.strings */,
 				1150B98B18A01C1F00C2B7FA /* main.m */,
@@ -268,6 +271,7 @@
 			files = (
 				1150B9BA18A1929100C2B7FA /* SupportedTransitSystems.plist in Resources */,
 				1150B98A18A01C1F00C2B7FA /* InfoPlist.strings in Resources */,
+				11ACC7AA18A2E7F1003FD01B /* APISpecification.plist in Resources */,
 				1150B99218A01C1F00C2B7FA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

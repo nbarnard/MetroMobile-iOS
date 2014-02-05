@@ -59,14 +59,8 @@
             [dataSources addObject:rawSource];
         }
 
-        MMTransitSystem *newSystem = [[MMTransitSystem alloc] initWithName: [rawSystem objectForKey:@"readableName"]
-                                                             andNameSource: [rawSystem objectForKey:@"name"]
-                                                               andTZSource: [rawSystem objectForKey:@"tz"]
-                                                         andBoundBoxSource: [rawSystem objectForKey:@"boundbox"]
-                                                         andRealTimeSource: [rawSystem objectForKey:@"realtime"]
-                                                            andStopsSource: [rawSystem objectForKey:@"stops"]
-                                                     andRoutePolygonSource: [rawSystem objectForKey:@"routepolygon"]
-                                                              andSourceIDs: [[NSArray alloc] initWithArray:sourceIDs]];
+        MMTransitSystem *newSystem = [[MMTransitSystem alloc] initWithSupportedSystemDictionary:rawSystem];
+
         [systems addObject:newSystem];
     }
     
@@ -82,9 +76,9 @@
 
     for (MMTransitSystem *currentsystem in _systems) {
         currentsystem.coveredArea = [networkController getBoundBoxForSystem:currentsystem withDataSources:_dataSources];
-        currentsystem.name = [networkController getStringKey: @"name" ForSystem:currentsystem withDataSources:_dataSources];
+        currentsystem.name = [networkController getStringforUniqueDataPoint:systemName ForSystem:currentsystem withDataSources:_dataSources];
         NSLog(@"%@",currentsystem.name);
-        currentsystem.timeZone = [networkController getStringKey:@"timezone" ForSystem:currentsystem withDataSources:_dataSources];
+        currentsystem.timeZone = [networkController getStringforUniqueDataPoint:systemTimeZone ForSystem:currentsystem withDataSources:_dataSources];
         NSLog(@"%@",currentsystem.timeZone);
     }
 

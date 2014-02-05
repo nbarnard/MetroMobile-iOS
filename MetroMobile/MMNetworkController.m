@@ -33,35 +33,115 @@
     return shared;
 }
 
-
-- (NSString *) getStringKey: (NSString *) key ForSystem: (MMTransitSystem *) transitSystem withDataSources: (NSSet *) dataSources {
-
-    NSDictionary *currentSource = [self identifyCorrectSourceForDataPoint:transitSystem.nameSource withDataSources:dataSources];
-
-    if(![[currentSource objectForKey:@"apispec"] isEqualToString:@"onebusaway"]) {
-        return @"Not OBA";
-    }
-
+- (NSString *)getOBAStringforUniqueDataPoint: (uniqueDataPoint)requestedDataPoint WithSource:(NSDictionary *)currentSource  {
     NSDictionary *obaAgencyCoverage = [self getOneBusAwayDataForCommand:@"agencies-with-coverage" with:currentSource];
-
+    
     NSArray *obaData = [obaAgencyCoverage objectForKey:@"data"];
     NSString *hostID = [currentSource objectForKey:@"hostid"];
-
+    
     __block NSString *result = [NSString new];
-
+    
     [obaData enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSDictionary *currentSystem = (NSDictionary *)obj;
         NSDictionary *agency = [currentSystem objectForKey:@"agency"];
         if([[agency objectForKey:@"id"] isEqualToString:hostID])
         {
-            result = [agency objectForKey:key];
+            result = [agency objectForKey:[self obtainOBAKeyforUniqueDataPoint:requestedDataPoint]];
             *stop = YES;
         }
     }];
-
+    
     return result;
-
 }
+
+// Only supports Keys with a single source. (e.g. doesn't support stopsSource)
+
+- (NSString *) getStringforUniqueDataPoint: (uniqueDataPoint) requestedDataPoint ForSystem: (MMTransitSystem *) transitSystem withDataSources: (NSSet *) dataSources {
+
+    NSString *dataPointSource = [[transitSystem getSourceForType:(sourceType)requestedDataPoint] objectAtIndex:0]; // Source Type and uniqueDataPoint align.
+
+    NSDictionary *currentSource = [self identifyCorrectSourceForDataPoint:dataPointSource withDataSources:dataSources];
+
+    NSString *requestedString = [NSString new];
+
+    if([[currentSource objectForKey:@"apispec"] isEqualToString:@"onebusaway"]) {
+        requestedString = [self getOBAStringforUniqueDataPoint:requestedDataPoint WithSource:currentSource];
+    }
+
+    if([[currentSource objectForKey:@"apispec"] isEqualToString:@"nextbus"]) {
+        requestedString = [self getNextBusStringforUniqueDataPoint:requestedDataPoint WithSource:currentSource];
+    }
+
+    return requestedString;
+}
+
+
+- (NSString *)getNextBusStringforUniqueDataPoint: (uniqueDataPoint)requestedDataPoint WithSource:(NSDictionary *)currentSource  {
+    NSData *nextBusAgencyCoverage = [self getNextBusDataForCommand:@"agencyList" with:currentSource];
+
+    NSString *hostID = [currentSource objectForKey:@"hostid"];
+    NSString *key = [self obtainNextBusKeyforUniqueDataPoint:requestedDataPoint];
+
+    NSArray *agencies = [[RXMLElement elementFromXMLData:nextBusAgencyCoverage] children:@"agency"];
+
+    __block NSString *result = [NSString new];
+
+[agencies enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    RXMLElement *agency = (RXMLElement *) obj;
+    if ([[agency attribute:@"tag"] isEqualToString:hostID]) {
+        result = [agency attribute:key];
+        *stop = YES;
+    }
+}];
+    return result;
+}
+
+
+
+- (NSString *) obtainNextBusKeyforUniqueDataPoint: (uniqueDataPoint) requestedDataPoint {
+    switch (requestedDataPoint) {
+        case systemName:
+            return @"title";
+            break;
+        case systemTimeZone:  // Purposfully falling through, as we don't serve TZ from NextBus
+        default:
+            return @"";
+            break;
+    }
+}
+
+- (NSString *) obtainOBAKeyforUniqueDataPoint: (uniqueDataPoint) requestedDataPoint {
+        switch (requestedDataPoint) {
+            case systemName:
+                return @"name";
+            case systemTimeZone:
+                return @"timezone";
+            default:
+                return @"";
+        }
+}
+
+//  Putting this method on ice for a bit, going to hard code mappings into obtainKeyforUniqueDataPoint
+//
+//- (NSDictionary *) getAPISpecFor: (NSString *) apispec {
+//
+//    NSString *cacheKey = [NSString stringWithFormat:@"apispec-%@", apispec];
+//    NSDictionary *requestedDictionary = [_systemCache objectForKey:cacheKey];
+//
+//    if(requestedDictionary != nil) {
+//        return requestedDictionary;
+//    }
+//
+//    NSString *apiSpecPlist = [[NSBundle mainBundle] pathForResource:@"APISpecification" ofType:@"plist"];
+//    NSDictionary *allApiSpecs = [[NSDictionary alloc] initWithContentsOfFile:apiSpecPlist];
+//
+//    requestedDictionary = [allApiSpecs objectForKey:apispec];
+//
+//    [_systemCache setObject:requestedDictionary forKey:cacheKey];
+//
+//    return requestedDictionary;
+//
+//}
 
 - (NSDictionary *) identifyCorrectSourceForDataPoint: (NSString *) datapoint withDataSources: (NSSet *) dataSources {
     __block NSDictionary *currentSource;
@@ -81,7 +161,9 @@
 
 - (MKCoordinateRegion) getBoundBoxForSystem: (MMTransitSystem *) transitSystem withDataSources: (NSSet *) dataSources {
 
-    NSDictionary *currentSource = [self identifyCorrectSourceForDataPoint:transitSystem.boundBoxSource withDataSources:dataSources];
+    NSString *dataPointSource = [[transitSystem getSourceForType:boundBoxSource] objectAtIndex:0]; // We only support once source for boundbox, take the first one.
+
+    NSDictionary *currentSource = [self identifyCorrectSourceForDataPoint:dataPointSource withDataSources:dataSources];
 
     // Bound box information is only currently available to the onebusaway API. NextBus is thin on these things.
     if(![[currentSource objectForKey:@"apispec"] isEqualToString:@"onebusaway"]) {
@@ -149,6 +231,32 @@
 
     return requestedDictionary;
 }
+
+- (NSData *) getNextBusDataForCommand: (NSString *) command with: (NSDictionary *) source {
+
+    NSString *host = [source objectForKey:@"host"];
+
+    NSString *cacheKey = [NSString stringWithFormat:@"%@-%@", host, command];
+
+    NSData *requestedData = [_systemCache objectForKey:cacheKey];
+
+    if (requestedData != nil){
+        return requestedData;
+    }
+
+    NSString *requestString = [NSString stringWithFormat:@"http://%@/service/publicXMLFeed?command=%@", host, command];
+
+    NSURL *commandURL = [NSURL URLWithString:requestString];
+
+    NSData *commandData = [NSData dataWithContentsOfURL:commandURL];
+
+// Need to add in error checking here
+
+    [_systemCache setObject:commandData forKey:cacheKey];
+
+    return commandData;
+}
+
 
 //- (NSArray *) getAgencies {
 //    NSURL *searchURL = [NSURL URLWithString:@"http://api.pugetsound.onebusaway.org/api/where/agencies-with-coverage.json?key=TEST"];

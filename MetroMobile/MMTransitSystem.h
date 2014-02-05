@@ -11,6 +11,18 @@
 
 @interface MMTransitSystem : NSObject
 
+typedef enum sourceTypes {
+    defaultSource = 0,
+    nameSource = 1,
+    boundBoxSource = 2,
+    realTimeSource = 3,
+    stopsSource = 4,
+    routePolygonSource = 5,
+    timeZoneSource = 6,
+    scheduleSource = 7
+} sourceType;
+
+
 // Information that in specific to the transit agency
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic) MKCoordinateRegion coveredArea;
@@ -19,14 +31,10 @@
 // Sources of data on the internet for this agency
 @property (nonatomic, strong) NSArray *sourceIDs;
 
-// Defines from which sources we're loading specific data
-@property (nonatomic, strong) NSString *nameSource;
-@property (nonatomic, strong) NSString *timeZoneSource;
-@property (nonatomic, strong) NSString *boundBoxSource;
-@property (nonatomic, strong) NSString *realTimeSource;
-@property (nonatomic, strong) NSString *stopsSource;
-@property (nonatomic, strong) NSString *routePolygonSource;
+-(MMTransitSystem *)initWithSupportedSystemDictionary: (NSDictionary *) supportedSystem;
 
--(MMTransitSystem *)initWithName: (NSString *) name andNameSource: (NSString *) nameSource andTZSource: (NSString *) timeZoneSource andBoundBoxSource: (NSString *) boundBoxSource andRealTimeSource: (NSString *) realTimeSource andStopsSource: (NSString *) stopsSource andRoutePolygonSource: (NSString *) routePolygonSource andSourceIDs: (NSArray *) sourceIDs;
+-(NSArray *)getSourceForType: (sourceType) sourceType;
+
+
 
 @end
