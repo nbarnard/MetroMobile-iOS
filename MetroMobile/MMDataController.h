@@ -14,9 +14,6 @@
 @property (nonatomic, strong) NSSet *hosts;
 @property (nonatomic, strong) NSSet *dataSources;
 
-
--(void) populateTransitSystems;
 + (MMDataController *) shared;
-
 
 @end

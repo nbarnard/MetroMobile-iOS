@@ -8,6 +8,8 @@
 
 #import "MMDataController.h"
 #import "MMTransitSystem.h"
+#import "MMNetworkController.h"
+#import "OneBusAwayKey.h"
 
 @interface MMDataController ()
 
@@ -28,6 +30,7 @@
         shared.fetchQueue = [NSOperationQueue new];
         [shared.fetchQueue addOperationWithBlock:^{
             [shared populateTransitSystems];
+            [shared populateNameAndCoveredAreaAndTZ];
         }];
     });
 
@@ -57,12 +60,13 @@
         }
 
         MMTransitSystem *newSystem = [[MMTransitSystem alloc] initWithName: [rawSystem objectForKey:@"readableName"]
-                                               andNameSource: [rawSystem objectForKey:@"name"]
-                                           andBoundBoxSource: [rawSystem objectForKey:@"boundbox"]
-                                           andRealTimeSource: [rawSystem objectForKey:@"realtime"]
-                                              andStopsSource: [rawSystem objectForKey:@"stops"]
-                                       andRoutePolygonSource: [rawSystem objectForKey:@"routepolygon"]
-                                                andSourceIDs: [[NSArray alloc] initWithArray:sourceIDs]];
+                                                             andNameSource: [rawSystem objectForKey:@"name"]
+                                                               andTZSource: [rawSystem objectForKey:@"tz"]
+                                                         andBoundBoxSource: [rawSystem objectForKey:@"boundbox"]
+                                                         andRealTimeSource: [rawSystem objectForKey:@"realtime"]
+                                                            andStopsSource: [rawSystem objectForKey:@"stops"]
+                                                     andRoutePolygonSource: [rawSystem objectForKey:@"routepolygon"]
+                                                              andSourceIDs: [[NSArray alloc] initWithArray:sourceIDs]];
         [systems addObject:newSystem];
     }
     
@@ -70,11 +74,21 @@
     _hosts = [[NSSet alloc] initWithSet:hosts];
     _dataSources = [[NSSet alloc] initWithSet:dataSources];
 
-    NSLog(@"%lu",(unsigned long)[_dataSources count]);
-    NSLog(@"%lu",(unsigned long)[_systems count]);
-
 }
 
+-(void) populateNameAndCoveredAreaAndTZ {
+
+    MMNetworkController *networkController = [MMNetworkController sharedController];
+
+    for (MMTransitSystem *currentsystem in _systems) {
+        currentsystem.coveredArea = [networkController getBoundBoxForSystem:currentsystem withDataSources:_dataSources];
+        currentsystem.name = [networkController getStringKey: @"name" ForSystem:currentsystem withDataSources:_dataSources];
+        NSLog(@"%@",currentsystem.name);
+        currentsystem.timeZone = [networkController getStringKey:@"timezone" ForSystem:currentsystem withDataSources:_dataSources];
+        NSLog(@"%@",currentsystem.timeZone);
+    }
+
+}
 
 
 @end

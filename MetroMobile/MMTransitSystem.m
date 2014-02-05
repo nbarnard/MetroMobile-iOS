@@ -10,12 +10,13 @@
 
 @implementation MMTransitSystem
 
--(MMTransitSystem *)initWithName: (NSString *) name andNameSource: (NSString *) nameSource andBoundBoxSource: (NSString *) boundBoxSource andRealTimeSource: (NSString *) realTimeSource andStopsSource: (NSString *) stopsSource andRoutePolygonSource: (NSString *) routePolygonSource andSourceIDs: (NSArray *) sourceIDs; {
+-(MMTransitSystem *)initWithName: (NSString *) name andNameSource: (NSString *) nameSource andTZSource: (NSString *) timeZoneSource andBoundBoxSource: (NSString *) boundBoxSource andRealTimeSource: (NSString *) realTimeSource andStopsSource: (NSString *) stopsSource andRoutePolygonSource: (NSString *) routePolygonSource andSourceIDs: (NSArray *) sourceIDs; {
     self = [super init];
 
     if (self != nil) {
         _name = name;
         _nameSource = nameSource;
+        _timeZoneSource = timeZoneSource;
         _boundBoxSource = boundBoxSource;
         _realTimeSource = realTimeSource;
         _stopsSource = stopsSource;

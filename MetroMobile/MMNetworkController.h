@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MMTransitSystem.h"
 
 @interface MMNetworkController : NSObject
 
 
 + (MMNetworkController *) sharedController;
-//- (NSArray *) getAgencies;
+- (MKCoordinateRegion) getBoundBoxForSystem: (MMTransitSystem *) transitSystem withDataSources: (NSSet *) dataSources;
+- (NSString *) getStringKey: (NSString *) key ForSystem: (MMTransitSystem *) transitSystem withDataSources: (NSSet *) dataSources;
+
 
 @end
