@@ -7,8 +7,8 @@
 //
 
 #import "MMDataController.h"
-#import "MMTransitSystem.h"
 #import "MMNetworkController.h"
+#import "MMFullModel.h"
 #import "OneBusAwayKey.h"
 
 @interface MMDataController ()
@@ -20,7 +20,7 @@
 
 @implementation MMDataController
 
-+ (MMDataController *) shared {
++ (MMDataController *) sharedController {
 
     static dispatch_once_t pred;
     static MMDataController *shared = nil;
@@ -77,10 +77,27 @@
     for (MMTransitSystem *currentsystem in _systems) {
         currentsystem.coveredArea = [networkController getBoundBoxForSystem:currentsystem withDataSources:_dataSources];
         currentsystem.name = [networkController getStringforUniqueDataPoint:systemName ForSystem:currentsystem withDataSources:_dataSources];
-        NSLog(@"%@",currentsystem.name);
         currentsystem.timeZone = [networkController getStringforUniqueDataPoint:systemTimeZone ForSystem:currentsystem withDataSources:_dataSources];
-        NSLog(@"%@",currentsystem.timeZone);
     }
+
+
+}
+
+- (void) getStopsForCLLocation: (CLLocation *) location {
+    MMNetworkController *networkController = [MMNetworkController sharedController];
+
+    MKMapPoint locationPoint = MKMapPointForCoordinate(location.coordinate);
+
+    __block NSMutableSet *systemsToCheck = [NSMutableSet new];
+
+    [_systems enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        MMTransitSystem *currentSystem = (MMTransitSystem *)obj;
+        if(MKMapRectContainsPoint(currentSystem.coveredArea, locationPoint)) {
+            [systemsToCheck addObject:currentSystem];
+        }
+    }];
+
+    [networkController getRoutesForSystems:systemsToCheck atPoint:locationPoint];
 
 }
 

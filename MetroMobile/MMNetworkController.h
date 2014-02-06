@@ -19,7 +19,9 @@ typedef enum uniqueDataPoint {
 
 
 + (MMNetworkController *) sharedController;
-- (MKCoordinateRegion) getBoundBoxForSystem: (MMTransitSystem *) transitSystem withDataSources: (NSSet *) dataSources;
+- (MKMapRect) getBoundBoxForSystem: (MMTransitSystem *) transitSystem withDataSources: (NSSet *) dataSources;
 - (NSString *) getStringforUniqueDataPoint: (uniqueDataPoint) requestedDataPoint ForSystem: (MMTransitSystem *) transitSystem withDataSources: (NSSet *) dataSources;
+- (void) getRoutesForSystems:(NSSet *) systems atPoint: (MKMapPoint)locationPoint;
+
 
 @end

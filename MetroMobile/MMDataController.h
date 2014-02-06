@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+#import "MMFullModel.h"
+
 @interface MMDataController : NSObject
 
 @property (nonatomic, strong) NSSet *systems;
 @property (nonatomic, strong) NSSet *hosts;
 @property (nonatomic, strong) NSSet *dataSources;
+@property (nonatomic, strong) MMLocation *currentLocation;
 
-+ (MMDataController *) shared;
++ (MMDataController *) sharedController;
+
+- (void) getStopsForCLLocation: (CLLocation *) location;
 
 @end

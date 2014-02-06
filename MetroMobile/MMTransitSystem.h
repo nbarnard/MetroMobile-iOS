@@ -22,10 +22,9 @@ typedef enum sourceTypes {
     scheduleSource = 7
 } sourceType;
 
-
 // Information that in specific to the transit agency
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic) MKCoordinateRegion coveredArea;
+@property (nonatomic) MKMapRect coveredArea;
 @property (nonatomic, strong) NSString *timeZone;
 
 // Sources of data on the internet for this agency

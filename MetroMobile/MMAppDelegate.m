@@ -8,17 +8,17 @@
 
 #import "MMAppDelegate.h"
 #import "MMDataController.h"
+#import "MMLocationController.h"
 
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    [MMDataController shared]; // init the controller so we start some lazy loading of stuff.
+    [MMDataController sharedController]; // init the controller so we start some lazy loading of stuff.
 
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    [MMLocationController sharedController]; // init the controller so we can start getting location in the background if the user will allow.
+
     return YES;
 }
 

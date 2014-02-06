@@ -24,6 +24,13 @@
 		1150B9B818A0250B00C2B7FA /* MMNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1150B9B718A0250B00C2B7FA /* MMNetworkController.m */; };
 		1150B9BA18A1929100C2B7FA /* SupportedTransitSystems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1150B9B918A1929100C2B7FA /* SupportedTransitSystems.plist */; };
 		11ACC7AA18A2E7F1003FD01B /* APISpecification.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11ACC7A918A2E7F1003FD01B /* APISpecification.plist */; };
+		11ACC7AD18A35B1D003FD01B /* MMLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACC7AC18A35B1D003FD01B /* MMLocationController.m */; };
+		11ACC7AF18A36216003FD01B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ACC7AE18A36216003FD01B /* CoreLocation.framework */; };
+		11ACC7B118A41220003FD01B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11ACC7B018A41220003FD01B /* Storyboard.storyboard */; };
+		11ACC7B418A412C7003FD01B /* MMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACC7B318A412C7003FD01B /* MMMainViewController.m */; };
+		11ACC7B818A436CE003FD01B /* MMRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACC7B718A436CE003FD01B /* MMRoute.m */; };
+		11ACC7BB18A43768003FD01B /* MMStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACC7BA18A43768003FD01B /* MMStop.m */; };
+		11ACC7BE18A437F0003FD01B /* MMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACC7BD18A437F0003FD01B /* MMLocation.m */; };
 		4C9F1127B7494776B7E13C68 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF51F9B8F2F45EAB2B1EF72 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +69,19 @@
 		1150B9B718A0250B00C2B7FA /* MMNetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMNetworkController.m; sourceTree = "<group>"; };
 		1150B9B918A1929100C2B7FA /* SupportedTransitSystems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SupportedTransitSystems.plist; sourceTree = "<group>"; };
 		11ACC7A918A2E7F1003FD01B /* APISpecification.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = APISpecification.plist; path = ../APISpecification.plist; sourceTree = "<group>"; };
+		11ACC7AB18A35B1D003FD01B /* MMLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLocationController.h; sourceTree = "<group>"; };
+		11ACC7AC18A35B1D003FD01B /* MMLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLocationController.m; sourceTree = "<group>"; };
+		11ACC7AE18A36216003FD01B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		11ACC7B018A41220003FD01B /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		11ACC7B218A412C7003FD01B /* MMMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMainViewController.h; sourceTree = "<group>"; };
+		11ACC7B318A412C7003FD01B /* MMMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMainViewController.m; sourceTree = "<group>"; };
+		11ACC7B618A436CE003FD01B /* MMRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRoute.h; sourceTree = "<group>"; };
+		11ACC7B718A436CE003FD01B /* MMRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRoute.m; sourceTree = "<group>"; };
+		11ACC7B918A43768003FD01B /* MMStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMStop.h; sourceTree = "<group>"; };
+		11ACC7BA18A43768003FD01B /* MMStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMStop.m; sourceTree = "<group>"; };
+		11ACC7BC18A437F0003FD01B /* MMLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLocation.h; sourceTree = "<group>"; };
+		11ACC7BD18A437F0003FD01B /* MMLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLocation.m; sourceTree = "<group>"; };
+		11ACC7BF18A43D31003FD01B /* MMFullModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMFullModel.h; sourceTree = "<group>"; };
 		11DB82A118A21A0E000D1C56 /* OneBusAwayKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneBusAwayKey.h; sourceTree = "<group>"; };
 		11DB82A218A22500000D1C56 /* defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
 		5BF51F9B8F2F45EAB2B1EF72 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11ACC7AF18A36216003FD01B /* CoreLocation.framework in Frameworks */,
 				1150B99918A01C2000C2B7FA /* XCTest.framework in Frameworks */,
 				1150B99B18A01C2000C2B7FA /* UIKit.framework in Frameworks */,
 				1150B99A18A01C2000C2B7FA /* Foundation.framework in Frameworks */,
@@ -116,6 +137,7 @@
 		1150B97E18A01C1F00C2B7FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11ACC7AE18A36216003FD01B /* CoreLocation.framework */,
 				1150B97F18A01C1F00C2B7FA /* Foundation.framework */,
 				1150B98118A01C1F00C2B7FA /* CoreGraphics.framework */,
 				1150B98318A01C1F00C2B7FA /* UIKit.framework */,
@@ -130,9 +152,7 @@
 			children = (
 				1150B98E18A01C1F00C2B7FA /* MMAppDelegate.h */,
 				1150B98F18A01C1F00C2B7FA /* MMAppDelegate.m */,
-				1150B9B618A0250B00C2B7FA /* MMNetworkController.h */,
-				1150B9B718A0250B00C2B7FA /* MMNetworkController.m */,
-				11DB82A118A21A0E000D1C56 /* OneBusAwayKey.h */,
+				11ACC7B518A412CC003FD01B /* View */,
 				1150B9B218A0231000C2B7FA /* Model Controller */,
 				1150B9B118A022DC00C2B7FA /* Model */,
 				1150B99118A01C1F00C2B7FA /* Images.xcassets */,
@@ -150,6 +170,7 @@
 				1150B98818A01C1F00C2B7FA /* InfoPlist.strings */,
 				1150B98B18A01C1F00C2B7FA /* main.m */,
 				1150B98D18A01C1F00C2B7FA /* MetroMobile-Prefix.pch */,
+				11DB82A118A21A0E000D1C56 /* OneBusAwayKey.h */,
 				11DB82A218A22500000D1C56 /* defines.h */,
 			);
 			name = "Supporting Files";
@@ -176,8 +197,15 @@
 		1150B9B118A022DC00C2B7FA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				11ACC7BF18A43D31003FD01B /* MMFullModel.h */,
 				1150B9AE18A01E2A00C2B7FA /* MMTransitSystem.h */,
 				1150B9AF18A01E2A00C2B7FA /* MMTransitSystem.m */,
+				11ACC7B618A436CE003FD01B /* MMRoute.h */,
+				11ACC7B718A436CE003FD01B /* MMRoute.m */,
+				11ACC7B918A43768003FD01B /* MMStop.h */,
+				11ACC7BA18A43768003FD01B /* MMStop.m */,
+				11ACC7BC18A437F0003FD01B /* MMLocation.h */,
+				11ACC7BD18A437F0003FD01B /* MMLocation.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -187,8 +215,22 @@
 			children = (
 				1150B9B318A0234100C2B7FA /* MMDataController.h */,
 				1150B9B418A0234100C2B7FA /* MMDataController.m */,
+				1150B9B618A0250B00C2B7FA /* MMNetworkController.h */,
+				1150B9B718A0250B00C2B7FA /* MMNetworkController.m */,
+				11ACC7AB18A35B1D003FD01B /* MMLocationController.h */,
+				11ACC7AC18A35B1D003FD01B /* MMLocationController.m */,
 			);
 			name = "Model Controller";
+			sourceTree = "<group>";
+		};
+		11ACC7B518A412CC003FD01B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				11ACC7B018A41220003FD01B /* Storyboard.storyboard */,
+				11ACC7B218A412C7003FD01B /* MMMainViewController.h */,
+				11ACC7B318A412C7003FD01B /* MMMainViewController.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +315,7 @@
 				1150B98A18A01C1F00C2B7FA /* InfoPlist.strings in Resources */,
 				11ACC7AA18A2E7F1003FD01B /* APISpecification.plist in Resources */,
 				1150B99218A01C1F00C2B7FA /* Images.xcassets in Resources */,
+				11ACC7B118A41220003FD01B /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +371,12 @@
 				1150B9B818A0250B00C2B7FA /* MMNetworkController.m in Sources */,
 				1150B9B518A0234100C2B7FA /* MMDataController.m in Sources */,
 				1150B9B018A01E2A00C2B7FA /* MMTransitSystem.m in Sources */,
+				11ACC7BB18A43768003FD01B /* MMStop.m in Sources */,
+				11ACC7AD18A35B1D003FD01B /* MMLocationController.m in Sources */,
+				11ACC7BE18A437F0003FD01B /* MMLocation.m in Sources */,
+				11ACC7B818A436CE003FD01B /* MMRoute.m in Sources */,
 				1150B98C18A01C1F00C2B7FA /* main.m in Sources */,
+				11ACC7B418A412C7003FD01B /* MMMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +500,7 @@
 				GCC_PREFIX_HEADER = "MetroMobile/MetroMobile-Prefix.pch";
 				INFOPLIST_FILE = "MetroMobile/MetroMobile-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -466,6 +515,7 @@
 				GCC_PREFIX_HEADER = "MetroMobile/MetroMobile-Prefix.pch";
 				INFOPLIST_FILE = "MetroMobile/MetroMobile-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

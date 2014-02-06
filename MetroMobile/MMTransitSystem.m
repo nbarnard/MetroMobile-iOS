@@ -33,7 +33,7 @@
         return [_supportedSystem objectForKey:@"defaultSource"];
     }
 
-    NSString *sourceKey = [NSString new];
+    NSString *sourceKey;
 
     switch (sourceType) {
         case defaultSource:
