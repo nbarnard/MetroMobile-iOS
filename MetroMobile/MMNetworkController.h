@@ -12,6 +12,7 @@
 // Unique Data Points Map to the sourcetypes in MMTransitSystem.h
 typedef enum uniqueDataPoint {
     systemName = 1,
+    systemStops = 4,
     systemTimeZone = 6
 } uniqueDataPoint;
 
@@ -21,7 +22,7 @@ typedef enum uniqueDataPoint {
 + (MMNetworkController *) sharedController;
 - (MKMapRect) getBoundBoxForSystem: (MMTransitSystem *) transitSystem withDataSources: (NSSet *) dataSources;
 - (NSString *) getStringforUniqueDataPoint: (uniqueDataPoint) requestedDataPoint ForSystem: (MMTransitSystem *) transitSystem withDataSources: (NSSet *) dataSources;
-- (void) getRoutesForSystems:(NSSet *) systems atPoint: (MKMapPoint)locationPoint;
+- (void) getRoutesForSystems:(NSSet *) systems atPoint: (MKMapPoint)locationPoint withDataSources: (NSSet *) dataSources;
 
 
 @end

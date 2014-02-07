@@ -7,7 +7,7 @@
 //
 
 #import "MMNetworkController.h"
-#import "MMTransitSystem.h"
+#import "MMFullModel.h"
 #import <MapKit/MapKit.h>
 #import "RXMLElement.h"
 #import "OneBusAwayKey.h"
@@ -15,20 +15,21 @@
 @interface MMNetworkController ()
 
 @property (nonatomic, strong) NSCache *systemCache;
+@property (nonatomic, strong) NSOperationQueue *networkRequestQueue;
 
 @end
 
 @implementation MMNetworkController
 
 #pragma mark External Methods
-// Only supports Keys with a single source. (e.g. doesn't support stopsSource)
+
 - (NSString *) getStringforUniqueDataPoint: (uniqueDataPoint) requestedDataPoint ForSystem: (MMTransitSystem *) transitSystem withDataSources: (NSSet *) dataSources {
 
     NSString *dataPointSource = [[transitSystem getSourceForType:(sourceType)requestedDataPoint] objectAtIndex:0]; // Source Type and uniqueDataPoint align.
 
     NSDictionary *currentSource = [self identifyCorrectSourceForDataPoint:dataPointSource withDataSources:dataSources];
 
-    NSString *requestedString = [NSString new];
+    NSString *requestedString;
 
     if([[currentSource objectForKey:@"apispec"] isEqualToString:@"onebusaway"]) {
         requestedString = [self getOBAStringforUniqueDataPoint:requestedDataPoint WithSource:currentSource];
@@ -39,21 +40,6 @@
     }
 
     return requestedString;
-}
-
-- (NSDictionary *) identifyCorrectSourceForDataPoint: (NSString *) datapoint withDataSources: (NSSet *) dataSources {
-    __block NSDictionary *currentSource;
-
-    [dataSources enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        NSDictionary *source = (NSDictionary *) obj;
-        if ([[source objectForKey:@"id"] isEqualToString:datapoint]) {
-            currentSource = source;
-            *stop = YES;
-        }
-    }];
-
-    return currentSource;
-
 }
 
 - (MKMapRect) getBoundBoxForSystem: (MMTransitSystem *) transitSystem withDataSources: (NSSet *) dataSources {
@@ -96,11 +82,112 @@
     return [self MKMapRectForCoordinateRegion:currentSystemCoordinateRegion];
 }
 
-- (void) getRoutesForSystems:(NSSet *) systems atPoint: (MKMapPoint)locationPoint {
+- (void) getRoutesForSystems:(NSSet *) systems atPoint: (MKMapPoint)locationPoint withDataSources: (NSSet *) dataSources {
+    __block NSMutableDictionary *hostsToCheck = [NSMutableDictionary new];
+
+    [systems enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        MMTransitSystem *currentSystem = (MMTransitSystem *) obj;
+        NSString *datapoint = [[currentSystem getSourceForType:stopsSource] objectAtIndex:0];
+        NSDictionary *source = [self identifyCorrectSourceForDataPoint:datapoint withDataSources: dataSources];
+        NSString *host = [source objectForKey:@"host"];
+
+        if([hostsToCheck objectForKey:host] == nil) {
+            NSMutableSet *systemsOnHost = [[NSMutableSet alloc] initWithObjects:currentSystem, nil];
+            [hostsToCheck setObject:systemsOnHost forKey:host];
+        } else {
+            NSMutableSet *systemsOnHost = [hostsToCheck objectForKey:host];
+            [systemsOnHost addObject:currentSystem];
+        }
+    }];
+
+    __block NSSet *stops = [NSMutableSet new];
+
+    [hostsToCheck enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+
+        NSSet *systemsOnHost = [[NSSet alloc] initWithSet: (NSMutableSet *) obj];
+
+        MMTransitSystem *representativeSystem = [systemsOnHost anyObject];
+
+        [_networkRequestQueue addOperationWithBlock:^{
+            NSSet *returnedStops = [self getNearbyStopsForSystem:representativeSystem atPoint:locationPoint withDataSources:dataSources];
+            @synchronized (stops)
+            {
+                NSSet *newStops = [stops setByAddingObjectsFromSet:returnedStops];
+                stops = newStops;
+            } // end of Syncronized block
+        }]; // end of networkRequest with Block
+    }]; // end of iterating over systems needed to check
+
+    [_networkRequestQueue waitUntilAllOperationsAreFinished];
+
+
     
 }
 
+- (NSSet *) getNearbyStopsForSystem: (MMTransitSystem *) transitSystem atPoint: (MKMapPoint)locationPoint withDataSources: (NSSet *) dataSources {
+
+    NSString *dataPointSource = [[transitSystem getSourceForType:(sourceType) systemStops] objectAtIndex:0]; // Source Type and uniqueDataPoint align.
+
+    NSDictionary *currentSource = [self identifyCorrectSourceForDataPoint:dataPointSource withDataSources:dataSources];
+
+    NSSet *stops;
+
+    if([[currentSource objectForKey:@"apispec"] isEqualToString:@"onebusaway"]) {
+        NSLog(@"here");
+        [self getOBAStopsforSystem:transitSystem forLocation:locationPoint withDataSources:dataSources];
+    }
+
+    if([[currentSource objectForKey:@"apispec"] isEqualToString:@"nextbus"]) {
+        // get next bus stops.
+    }
+
+    return stops;
+}
+
 #pragma mark OneBusAway
+
+- (NSSet *) getOBAStopsforSystem:(MMTransitSystem *) transitSystem forLocation: (MKMapPoint)location withDataSources: (NSSet *) dataSources {
+
+//    NSDictionary *currentSource = [self identifyCorrectSourceForDataPoint:dataPointSource withDataSources:dataSources];
+
+    // just request out to OBA Puget Sound with the location point and process it.
+
+    CLLocationCoordinate2D coordinateLocation = MKCoordinateForMapPoint(location);
+
+    NSString *requestString = [NSString stringWithFormat:@"http://api.pugetsound.onebusaway.org/api/where/stops-for-location.json?key=TEST&lat=%f&lon=%f", coordinateLocation.latitude, coordinateLocation.longitude];
+
+    NSURL *requestURL = [NSURL URLWithString:requestString];
+    NSError *error;
+    NSData *stopsData = [NSData dataWithContentsOfURL:requestURL];
+
+    NSDictionary *stopsDictionary = [NSJSONSerialization JSONObjectWithData:stopsData options: NSJSONReadingMutableContainers error:&error];
+
+    NSNumber *responseCode = [stopsDictionary objectForKey:@"code"];
+
+    if (![responseCode isEqualToNumber:[NSNumber numberWithInt:200]]) {
+        NSLog(@"Invalid Response");
+        return nil;
+    }
+
+    NSArray *rawStops = [[stopsDictionary objectForKey:@"data"] objectForKey:@"stops"];
+
+    __block NSMutableSet *stops = [NSMutableSet new];
+
+    [rawStops enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSDictionary *currentStop = (NSDictionary *) obj;
+        MMStop *newMMStop = [MMStop new];
+        NSNumber *lat = [currentStop objectForKey:@"lat"];
+        NSNumber *lon = [currentStop objectForKey:@"lon"];
+
+        newMMStop.location = [[CLLocation alloc] initWithLatitude:[lat doubleValue] longitude:[lon doubleValue]];
+
+    }];
+
+
+
+    return nil;
+}
+
 - (NSString *) obtainOBAKeyforUniqueDataPoint: (uniqueDataPoint) requestedDataPoint {
     switch (requestedDataPoint) {
         case systemName:
@@ -112,7 +199,7 @@
     }
 }
 
-- (NSString *)getOBAStringforUniqueDataPoint: (uniqueDataPoint)requestedDataPoint WithSource:(NSDictionary *)currentSource  {
+- (NSString *) getOBAStringforUniqueDataPoint: (uniqueDataPoint) requestedDataPoint WithSource:(NSDictionary *)currentSource  {
     NSDictionary *obaAgencyCoverage = [self getOneBusAwayDataForCommand:@"agencies-with-coverage" with:currentSource];
     
     NSArray *obaData = [obaAgencyCoverage objectForKey:@"data"];
@@ -157,8 +244,8 @@
     NSNumber *responseCode = [requestedDictionary objectForKey:@"code"];
 
     if (![responseCode isEqualToNumber:[NSNumber numberWithInt:200]]) {
-        return nil;
         NSLog(@"Invalid Response");
+        return nil;
     }
 
     [_systemCache setObject:requestedDictionary forKey:cacheKey];
@@ -179,7 +266,7 @@
     }
 }
 
-- (NSString *)getNextBusStringforUniqueDataPoint: (uniqueDataPoint)requestedDataPoint WithSource:(NSDictionary *)currentSource  {
+- (NSString *) getNextBusStringforUniqueDataPoint: (uniqueDataPoint)requestedDataPoint WithSource:(NSDictionary *)currentSource  {
     NSData *nextBusAgencyCoverage = [self getNextBusDataForCommand:@"agencyList" with:currentSource];
 
     NSString *hostID = [currentSource objectForKey:@"hostid"];
@@ -225,6 +312,23 @@
 }
 
 #pragma mark Support Methods
+
+// Only supports Keys with a single source. (e.g. doesn't support stopsSource)
+- (NSDictionary *) identifyCorrectSourceForDataPoint: (NSString *) datapoint withDataSources: (NSSet *) dataSources {
+    __block NSDictionary *currentSource;
+
+    [dataSources enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        NSDictionary *source = (NSDictionary *) obj;
+        if ([[source objectForKey:@"id"] isEqualToString:datapoint]) {
+            currentSource = source;
+            *stop = YES;
+        }
+    }];
+
+    return currentSource;
+    
+}
+
 // From http://stackoverflow.com/questions/9270268/convert-mkcoordinateregion-to-mkmaprect - Leo
 - (MKMapRect) MKMapRectForCoordinateRegion: (MKCoordinateRegion) region {
     MKMapPoint a = MKMapPointForCoordinate(CLLocationCoordinate2DMake(
@@ -236,7 +340,7 @@
     return MKMapRectMake(MIN(a.x,b.x), MIN(a.y,b.y), ABS(a.x-b.x), ABS(a.y-b.y));
 }
 
-//  Putting this method on ice for a bit, going to hard code mappings into obtainKeyforUniqueDataPoint
+//  Putting this method on ice for a bit, going to hard code mappings into obtain(APISPEC)KeyforUniqueDataPoint
 //
 //- (NSDictionary *) getAPISpecFor: (NSString *) apispec {
 //
@@ -267,6 +371,7 @@
     dispatch_once(&pred, ^{
         shared = [[MMNetworkController alloc] init];
         shared.systemCache = [NSCache new];
+        shared.networkRequestQueue = [NSOperationQueue new];
     });
 
     return shared;

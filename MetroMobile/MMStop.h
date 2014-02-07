@@ -11,7 +11,8 @@
 
 @interface MMStop : NSObject
 
-@property (nonatomic, strong) CLLocation *location;
+@property (nonatomic) CLLocation *location;
+@property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) NSArray *routes;
 
 @end

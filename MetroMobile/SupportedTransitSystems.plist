@@ -6,7 +6,9 @@
 		<key>readableName</key>
 		<string>Metro Transit</string>
 		<key>defaultSource</key>
-		<array><string>ps_oba_mt</string></array>
+		<array>
+			<string>ps_oba_mt</string>
+		</array>
 		<key>sources</key>
 		<array>
 			<dict>
@@ -25,7 +27,9 @@
 		<key>readableName</key>
 		<string>King County Marine Division</string>
 		<key>defaultSource</key>
-		<array><string>ps_oba_km</string></array>
+		<array>
+			<string>ps_oba_km</string>
+		</array>
 		<key>sources</key>
 		<array>
 			<dict>
@@ -44,7 +48,9 @@
 		<key>readableName</key>
 		<string>Intercity Transit</string>
 		<key>defaultSource</key>
-		<array><string>ps_oba_it</string></array>
+		<array>
+			<string>ps_oba_it</string>
+		</array>
 		<key>sources</key>
 		<array>
 			<dict>
@@ -63,7 +69,9 @@
 		<key>readableName</key>
 		<string>Sound Transit</string>
 		<key>defaultSource</key>
-		<array><string>ps_oba_st</string></array>
+		<array>
+			<string>ps_oba_st</string>
+		</array>
 		<key>sources</key>
 		<array>
 			<dict>
@@ -82,7 +90,9 @@
 		<key>readableName</key>
 		<string>Seattle Children’s Hospital Shuttle</string>
 		<key>defaultSource</key>
-		<array><string>ps_oba_schs</string></array>
+		<array>
+			<string>ps_oba_schs</string>
+		</array>
 		<key>sources</key>
 		<array>
 			<dict>
@@ -97,11 +107,13 @@
 			</dict>
 		</array>
 	</dict>
-		<dict>
+	<dict>
 		<key>readableName</key>
 		<string>Community Transit</string>
 		<key>defaultSource</key>
-		<array><string>ps_oba_ct</string></array>
+		<array>
+			<string>ps_oba_ct</string>
+		</array>
 		<key>sources</key>
 		<array>
 			<dict>
@@ -116,21 +128,29 @@
 			</dict>
 		</array>
 	</dict>
-	
-
 	<dict>
 		<key>readableName</key>
 		<string>Seattle Streetcar</string>
 		<key>defaultSource</key>
-		<array><string>ps_oba_sc</string></array>
+		<array>
+			<string>ps_oba_sc</string>
+		</array>
 		<key>nameSource</key>
-		<array><string>nextbus_sc</string></array>
+		<array>
+			<string>nextbus_sc</string>
+		</array>
 		<key>realtimeSource</key>
-		<array><string>nextbus_sc</string></array>
+		<array>
+			<string>nextbus_sc</string>
+		</array>
 		<key>stops</key>
-		<array><string>nextbus_sc</string><string>ps_oba_sc</string></array>
+		<array>
+			<string>nextbus_sc</string>
+		</array>
 		<key>routepolygon</key>
-		<array><string>nextbus_sc</string></array>
+		<array>
+			<string>nextbus_sc</string>
+		</array>
 		<key>sources</key>
 		<array>
 			<dict>

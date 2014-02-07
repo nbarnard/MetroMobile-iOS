@@ -94,11 +94,13 @@
         MMTransitSystem *currentSystem = (MMTransitSystem *)obj;
         if(MKMapRectContainsPoint(currentSystem.coveredArea, locationPoint)) {
             [systemsToCheck addObject:currentSystem];
+            NSLog(@"%@", currentSystem.name);
         }
     }];
 
-    [networkController getRoutesForSystems:systemsToCheck atPoint:locationPoint];
-
+    [networkController getRoutesForSystems:systemsToCheck atPoint:locationPoint withDataSources:_dataSources];
+// Register a notification here.
+    
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "MMLocationController.h"
+#import "MMDataController.h"
 
 @interface MMLocationController ()
 
@@ -76,8 +77,8 @@
 
     [selectedThread addOperationWithBlock:^{
 // message to Data Controller to get stops w/ location.
-        
-        NSLog(@"moo");
+        MMDataController *dataController = [MMDataController sharedController];
+        [dataController getStopsForCLLocation:location];
     }];
 
 }
