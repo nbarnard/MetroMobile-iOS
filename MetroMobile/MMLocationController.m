@@ -32,14 +32,16 @@
 - (void) initLocationManager {
     _locationManager = [CLLocationManager new];
     _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 meeters is just over a block or so.
+    _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 meters is just over a block or so.
     _locationManager.distanceFilter = 200; // meters
 
     // only start updating if we're already authorized.
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized) {
         [_locationManager startUpdatingLocation];
+    } else {
+        NSLog(@"****Not Authorized for Location, if we weren't in testing, we'd not ask for a location");
+        [_locationManager startUpdatingLocation]; // for testing
     }
-    [_locationManager startUpdatingLocation]; // for testing
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -62,15 +64,17 @@
 
 - (void)updateLocationPropertyWithLocation: (CLLocation *) location {
     _currentLocation = location;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"locrecvd" object:nil]
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"locrecvd" object:nil]
     ;
 
-    NSLog(@"long: %f lat: %f", location.coordinate.longitude, location.coordinate.latitude);
+    NSLog(@"----------------------------------------------");
+    NSLog(@"Location Received. Latitude: %f Longitude: %f", location.coordinate.latitude, location.coordinate.longitude);
 
     NSOperationQueue *selectedThread;
 
-    if(_userWaiting) {
-        selectedThread = [NSOperationQueue mainQueue];
+//    if(_userWaiting) { // this is commented out as a demo adjustment
+    if(TRUE) {
+    selectedThread = [NSOperationQueue mainQueue];
     } else {
         selectedThread = [NSOperationQueue new];
     }

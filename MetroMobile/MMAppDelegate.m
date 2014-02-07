@@ -15,9 +15,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-    [MMDataController sharedController]; // init the controller so we start some lazy loading of stuff.
-
-    [MMLocationController sharedController]; // init the controller so we can start getting location in the background if the user will allow.
+//    NSOperationQueue *aQueue = [NSOperationQueue new];
+//
+//    [aQueue addOperationWithBlock:^{
+        [MMDataController sharedController]; // init the controller so we start some lazy loading of stuff.
+//    }];
+//
+//    [aQueue addOperationWithBlock:^{
+        [MMLocationController sharedController]; // init the controller so we can start getting location in the background if the user will allow.
+//    }];
 
     return YES;
 }

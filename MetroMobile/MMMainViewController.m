@@ -38,25 +38,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)findNearbyRoutesTapped {
-
-    MMLocationController *locationController = [MMLocationController sharedController];
-
-    if (locationController.currentLocation == Nil) {
-        MMLocationController *locationController = [MMLocationController sharedController];
-        locationController.userWaiting = YES;
-        [ProgressHUD show:@"Finding Location and Stops"];
-
-        [[NSNotificationCenter defaultCenter] addObserver: self
-                                                 selector: @selector(presentNearbyRoutes)
-                                                     name: @"routesReceived"
-                                                   object: nil];
-    } else {
-        // check if we already have nearby routes for this location if so go for presentNearbyRoutes,
-        // if not register for a notification and throw up a hud.
-        [self presentNearbyRoutes];
-    }
-}
+//- (IBAction)findNearbyRoutesTapped {
+//
+//    MMLocationController *locationController = [MMLocationController sharedController];
+//
+//    if (locationController.currentLocation == Nil) {
+//        MMLocationController *locationController = [MMLocationController sharedController];
+//        locationController.userWaiting = YES;
+//        [ProgressHUD show:@"Finding Location and Stops"];
+//
+//        [[NSNotificationCenter defaultCenter] addObserver: self
+//                                                 selector: @selector(presentNearbyRoutes)
+//                                                     name: @"routesReceived"
+//                                                   object: nil];
+//    } else {
+//        // check if we already have nearby routes for this location if so go for presentNearbyRoutes,
+//        // if not register for a notification and throw up a hud.
+//        [self presentNearbyRoutes];
+//    }
+//}
 
 - (void) presentNearbyRoutes {
 // Pull down hud.

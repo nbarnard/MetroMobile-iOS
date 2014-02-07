@@ -45,6 +45,10 @@
     NSMutableSet *hosts = [NSMutableSet new];
     NSMutableSet *dataSources = [NSMutableSet new];
 
+    NSLog(@"Loading PList of Transit System Data");
+
+    NSLog(@"----------------------------------------------");
+
     for (NSDictionary *rawSystem in rawSystems) {
         NSArray *rawSources = [rawSystem objectForKey:@"sources"];
         NSMutableArray *sourceIDs = [NSMutableArray new];
@@ -90,11 +94,21 @@
 
     __block NSMutableSet *systemsToCheck = [NSMutableSet new];
 
+    int x = 0;
+//    NSLog(@"System Count: %d", [_systems count]);
+    while ((unsigned long)[_systems count] == 0) { // this is not how you should solve concurrency issues.
+        x = x+1;
+//        NSLog(@"%d", x);
+    }
+
+    NSLog(@"Identifying Systems that need to be checked:");
+
     [_systems enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         MMTransitSystem *currentSystem = (MMTransitSystem *)obj;
+
         if(MKMapRectContainsPoint(currentSystem.coveredArea, locationPoint)) {
             [systemsToCheck addObject:currentSystem];
-            NSLog(@"%@", currentSystem.name);
+            NSLog(@"System to Check: %@", currentSystem.name);
         }
     }];
 

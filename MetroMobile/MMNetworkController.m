@@ -133,7 +133,6 @@
     NSSet *stops;
 
     if([[currentSource objectForKey:@"apispec"] isEqualToString:@"onebusaway"]) {
-        NSLog(@"here");
         [self getOBAStopsforSystem:transitSystem forLocation:locationPoint withDataSources:dataSources];
     }
 
@@ -171,7 +170,7 @@
 
     NSArray *rawStops = [[stopsDictionary objectForKey:@"data"] objectForKey:@"stops"];
 
-    __block NSMutableSet *stops = [NSMutableSet new];
+//    __block NSMutableSet *stops = [NSMutableSet new];
 
     [rawStops enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSDictionary *currentStop = (NSDictionary *) obj;

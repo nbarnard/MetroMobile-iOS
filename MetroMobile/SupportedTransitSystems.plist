@@ -143,11 +143,11 @@
 		<array>
 			<string>nextbus_sc</string>
 		</array>
-		<key>stops</key>
+		<key>stopsSource</key>
 		<array>
 			<string>nextbus_sc</string>
 		</array>
-		<key>routepolygon</key>
+		<key>routePolygonSource</key>
 		<array>
 			<string>nextbus_sc</string>
 		</array>
